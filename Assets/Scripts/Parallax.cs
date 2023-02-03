@@ -7,15 +7,23 @@ public class Parallax : MonoBehaviour
     private MeshRenderer meshRenderer;
 
     public float animationSpeed = 1f;
+    public GameObject bird;
+    public Bird dieCheck;
 
     private void Awake()
     {
         meshRenderer = GetComponent<MeshRenderer>();
+        bird = GameObject.FindGameObjectWithTag("Bird");
+        dieCheck = bird.GetComponent<Bird>();
     }
 
     // Update is called once per frame
     void Update()
     {
-        meshRenderer.material.mainTextureOffset += new Vector2(animationSpeed * Time.deltaTime,0);
+        if (!dieCheck.isDie)
+        {
+            meshRenderer.material.mainTextureOffset += new Vector2(animationSpeed * Time.deltaTime, 0);
+        }
+        
     }
 }

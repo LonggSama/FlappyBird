@@ -6,6 +6,8 @@ public class Bird : MonoBehaviour
 {
     private Rigidbody2D birdRb;
 
+    public float point = 0f;
+
     public float flyForce = 10f;
     //public float gravity = -9.8f;
     public bool isDie;
@@ -60,6 +62,15 @@ public class Bird : MonoBehaviour
             {
                 birdRb.AddForce(Vector3.up * flyForce, ForceMode2D.Impulse);
             }
+        }
+    }
+
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (collision.gameObject.CompareTag("Point"))
+        {
+            point++;
+            Debug.Log("Point " + point);
         }
     }
 

@@ -8,6 +8,7 @@ TagManager:
   - Background
   - Obstacle
   - Bird
+  - Point
   layers:
   - Default
   - TransparentFX
