@@ -218,6 +218,7 @@ GameObject:
   - component: {fileID: 555510234}
   - component: {fileID: 555510233}
   - component: {fileID: 555510232}
+  - component: {fileID: 555510235}
   m_Layer: 0
   m_Name: Background
   m_TagString: Background
@@ -290,6 +291,19 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &555510235
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 555510231}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 428c7da2e9cd89c4eae6e3342159c4a6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  animationSpeed: 0.1
 --- !u!1 &747383327
 GameObject:
   m_ObjectHideFlags: 0
@@ -302,6 +316,7 @@ GameObject:
   - component: {fileID: 747383330}
   - component: {fileID: 747383329}
   - component: {fileID: 747383332}
+  - component: {fileID: 747383333}
   m_Layer: 0
   m_Name: Ground
   m_TagString: Ground
@@ -387,7 +402,7 @@ BoxCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0, y: -0.00962621}
+  m_Offset: {x: 0, y: -0.011949241}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0, y: 0}
@@ -398,8 +413,21 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 1, y: 0.9807476}
+  m_Size: {x: 1, y: 0.9761015}
   m_EdgeRadius: 0
+--- !u!114 &747383333
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 747383327}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 428c7da2e9cd89c4eae6e3342159c4a6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  animationSpeed: 0.5
 --- !u!1 &1182399746
 GameObject:
   m_ObjectHideFlags: 0
@@ -448,7 +476,6 @@ MonoBehaviour:
   - {fileID: 7754537414943391000, guid: 11894978d390f1e4b9fa913b344e44a6, type: 3}
   - {fileID: 4712259945360713216, guid: f6df13b5b4035624fa866c8a6f5bee4d, type: 3}
   - {fileID: 825447589065488921, guid: 699b11aa7b09d9c4eafcf27397a5f479, type: 3}
-  flyForce: 10
 --- !u!1001 &6605213843400552077
 PrefabInstance:
   m_ObjectHideFlags: 0
