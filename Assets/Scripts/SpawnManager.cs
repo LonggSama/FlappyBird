@@ -9,7 +9,7 @@ public class SpawnManager : MonoBehaviour
     [SerializeField] GameObject point;
 
     private float spawnX = 4f;
-    private float delayTime = 1f;
+    private float delayTime = 0;
     private float repeatTime = 3.5f;
     private float maxY = 7f;
     private float minxY = 2.5f;
@@ -25,12 +25,12 @@ public class SpawnManager : MonoBehaviour
 
     void Start()
     {
-        InvokeRepeating("spawnPipe", delayTime, repeatTime);
+        
     }
 
     void spawnPipe()
     {
-        if (!bird.isDie)
+        if (!bird.isDie && bird._isStart)
         {
             float positionY = Random.Range(minxY, maxY);
             Vector2 spawnPos = new Vector2(spawnX, Random.Range(spawnX, positionY));
@@ -42,7 +42,21 @@ public class SpawnManager : MonoBehaviour
 
     IEnumerator WaitBird()
     {
-        yield return new WaitForSeconds(0.001f);
+        yield return new WaitUntil(() => GameObject.FindGameObjectWithTag("Bird"));
+
+        //while (bird == null)
+        //{
+        //    bird = GameObject.FindGameObjectWithTag("Bird").GetComponent<Bird>();
+        //    yield return null;
+        //}
+        //yield return new WaitForSeconds(0.001f);
         bird = GameObject.FindGameObjectWithTag("Bird").GetComponent<Bird>();
+        StartCoroutine(WaitGameStart());
+    }
+
+    IEnumerator WaitGameStart()
+    {
+        yield return new WaitUntil(() => bird._isStart);
+        InvokeRepeating("spawnPipe", delayTime, repeatTime);
     }
 }

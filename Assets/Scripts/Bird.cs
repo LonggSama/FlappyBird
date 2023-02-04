@@ -7,7 +7,7 @@ public class Bird : MonoBehaviour
     private Rigidbody2D birdRb;
 
     public float point = 0f;
-    public int jumpCount = 0;
+    public bool _isStart { get; private set; }
     public float flyForce = 10f;
     //public float gravity = -9.8f;
     public bool isDie { get; private set; }
@@ -16,7 +16,7 @@ public class Bird : MonoBehaviour
 
 
     // Start is called before the first frame update
-    void Start()
+    void Awake()
     {
         birdRb = GameObject.FindGameObjectWithTag("Bird").GetComponent<Rigidbody2D>();
     }
@@ -24,6 +24,11 @@ public class Bird : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if (!_isStart)
+        {
+            StartGame();
+        }
+
         ActiveAnimator();
         if (!isDie)
         {
@@ -36,7 +41,6 @@ public class Bird : MonoBehaviour
         if (collision.gameObject.CompareTag("Ground") || collision.gameObject.CompareTag("Obstacle")) 
         {
             isDie = true;
-            jumpCount = 0;
         }
     }
 
@@ -72,6 +76,15 @@ public class Bird : MonoBehaviour
         {
             point++;
             Debug.Log("Point " + point);
+        }
+    }
+
+    void StartGame()
+    {
+        if (Input.GetKeyDown(KeyCode.Space))
+        {
+            birdRb.bodyType = RigidbodyType2D.Dynamic;
+            _isStart= true;
         }
     }
 
