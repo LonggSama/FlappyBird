@@ -6,7 +6,7 @@ public class Bird : MonoBehaviour
 {
     private Rigidbody2D birdRb;
 
-    public float point = 0f;
+    public int point { get; private set; }
     public bool _isStart { get; private set; }
     public float flyForce = 10f;
     //public float gravity = -9.8f;
@@ -41,6 +41,7 @@ public class Bird : MonoBehaviour
         if (collision.gameObject.CompareTag("Ground") || collision.gameObject.CompareTag("Obstacle")) 
         {
             isDie = true;
+            point = 0;
         }
     }
 
@@ -84,7 +85,8 @@ public class Bird : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.Space))
         {
             birdRb.bodyType = RigidbodyType2D.Dynamic;
-            _isStart= true;
+            _isStart = true;
+            isDie = false;
         }
     }
 

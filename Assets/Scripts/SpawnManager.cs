@@ -9,26 +9,37 @@ public class SpawnManager : MonoBehaviour
     [SerializeField] GameObject point;
 
     private float spawnX = 4f;
-    private float delayTime = 0;
-    private float repeatTime = 3.5f;
+    //private float delayTime = 0;
+    //private float repeatTime = 3.5f;
     private float maxY = 7f;
     private float minxY = 2.5f;
 
     Bird bird;
+    PipeController pipeController;
 
     // Start is called before the first frame update
 
     private void Awake()
     {
         StartCoroutine(WaitBird());
+        StartCoroutine(WaitSpawnPipe());
     }
 
-    void Start()
+    void Update()
     {
+        if (pipeController != null)
+        {
+            
+            if (pipeController._callSpawn)
+            {
+                SpawnPipe();
+            }
+            Debug.Log("SpawnManager " + pipeController._callSpawn + " " + pipeController.GetInstanceID());
+        }
         
     }
 
-    void spawnPipe()
+    void SpawnPipe()
     {
         if (!bird.isDie && bird._isStart)
         {
@@ -51,12 +62,20 @@ public class SpawnManager : MonoBehaviour
         //}
         //yield return new WaitForSeconds(0.001f);
         bird = GameObject.FindGameObjectWithTag("Bird").GetComponent<Bird>();
+        Debug.Log(bird);
         StartCoroutine(WaitGameStart());
     }
 
     IEnumerator WaitGameStart()
     {
         yield return new WaitUntil(() => bird._isStart);
-        InvokeRepeating("spawnPipe", delayTime, repeatTime);
+        SpawnPipe();
+    }
+
+    IEnumerator WaitSpawnPipe()
+    {
+        yield return new WaitUntil(() => GameObject.FindGameObjectWithTag("Pipe"));
+        pipeController = GameObject.FindGameObjectWithTag("Pipe").GetComponent<PipeController>();
+        Debug.Log(pipeController);
     }
 }
