@@ -19,9 +19,12 @@ public class Parallax : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        MoveLeft();
+        if (bird != null)
+        {
+            MoveLeft();
+        }
     }
-    
+
     void MoveLeft()
     {
         meshRenderer.material.mainTextureOffset += new Vector2(animationSpeed * Time.deltaTime, 0);
@@ -33,7 +36,14 @@ public class Parallax : MonoBehaviour
 
     IEnumerator WaitBird()
     {
-        yield return new WaitForSeconds(0.001f);
+        yield return new WaitUntil(() => GameObject.FindGameObjectWithTag("Bird"));
+        
+        //while (bird == null)
+        //{
+        //    bird = GameObject.FindGameObjectWithTag("Bird").GetComponent<Bird>();
+        //    yield return null;
+        //}
+        //yield return new WaitForSeconds(0.001f);
         bird = GameObject.FindGameObjectWithTag("Bird").GetComponent<Bird>();
     }
 
