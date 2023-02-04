@@ -4,26 +4,37 @@ using UnityEngine;
 
 public class Parallax : MonoBehaviour
 {
-    private MeshRenderer meshRenderer;
+    MeshRenderer meshRenderer;
 
-    public float animationSpeed = 1f;
-    public GameObject bird;
-    public Bird dieCheck;
+    [SerializeField] float animationSpeed = 1f;
 
-    private void Awake()
+    Bird bird;
+
+    void Awake()
     {
         meshRenderer = GetComponent<MeshRenderer>();
-        bird = GameObject.FindGameObjectWithTag("Bird");
-        dieCheck = bird.GetComponent<Bird>();
+        StartCoroutine(WaitBird());
     }
 
     // Update is called once per frame
     void Update()
     {
-        if (!dieCheck.isDie)
-        {
-            meshRenderer.material.mainTextureOffset += new Vector2(animationSpeed * Time.deltaTime, 0);
-        }
-        
+        MoveLeft();
     }
+    
+    void MoveLeft()
+    {
+        meshRenderer.material.mainTextureOffset += new Vector2(animationSpeed * Time.deltaTime, 0);
+        if (bird.isDie)
+        {
+            animationSpeed = 0;
+        }
+    }
+
+    IEnumerator WaitBird()
+    {
+        yield return new WaitForSeconds(0.001f);
+        bird = GameObject.FindGameObjectWithTag("Bird").GetComponent<Bird>();
+    }
+
 }

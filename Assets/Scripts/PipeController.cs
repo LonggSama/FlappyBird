@@ -7,29 +7,26 @@ public class PipeController : MonoBehaviour
     [SerializeField] float speed = 1f;
     private float leftBounds = -4f;
 
-    public GameObject bird;
-    public Bird dieCheck;
+    Bird bird;
 
     // Start is called before the first frame update
-    void Start()
+    void Awake()
     {
-        bird = GameObject.FindGameObjectWithTag("Bird");
-        dieCheck = bird.GetComponent<Bird>();
+        bird = GameObject.FindGameObjectWithTag("Bird").GetComponent<Bird>();
     }
 
     // Update is called once per frame
     void Update()
     {
-        if (!dieCheck.isDie)
+        if (!bird.isDie)
         {
-            moveLeft();
+            MoveLeft();
         }
-        
     }
 
-    public void moveLeft()
+    void MoveLeft()
     {
-        transform.Translate(Vector3.left * speed * Time.deltaTime);
+        transform.Translate(Vector2.left * speed * Time.deltaTime);
 
         if (transform.position.x < leftBounds)
         {

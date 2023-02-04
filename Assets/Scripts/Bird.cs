@@ -7,10 +7,10 @@ public class Bird : MonoBehaviour
     private Rigidbody2D birdRb;
 
     public float point = 0f;
-
+    public int jumpCount = 0;
     public float flyForce = 10f;
     //public float gravity = -9.8f;
-    public bool isDie;
+    public bool isDie { get; private set; }
 
     //private Vector3 direction;
 
@@ -36,6 +36,7 @@ public class Bird : MonoBehaviour
         if (collision.gameObject.CompareTag("Ground") || collision.gameObject.CompareTag("Obstacle")) 
         {
             isDie = true;
+            jumpCount = 0;
         }
     }
 
