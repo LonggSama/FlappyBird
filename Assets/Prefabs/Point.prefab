@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4199730067575970929}
   - component: {fileID: 4134009073969153758}
-  - component: {fileID: 2524818441388120986}
+  - component: {fileID: 8498763668464284865}
   m_Layer: 0
   m_Name: Point
   m_TagString: Point
@@ -59,7 +59,7 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 0.05, y: 8.5}
   m_EdgeRadius: 0
---- !u!114 &2524818441388120986
+--- !u!114 &8498763668464284865
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -68,7 +68,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 7589625162342945109}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a2b0c545b5d5c4d4c8aa9ca42cc092e6, type: 3}
+  m_Script: {fileID: 11500000, guid: 994f4d4ed3ad5cc46b4a52b48acd7c03, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   speed: 1

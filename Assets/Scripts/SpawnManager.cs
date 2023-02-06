@@ -7,6 +7,7 @@ public class SpawnManager : MonoBehaviour
     [SerializeField] GameObject topPipe;
     [SerializeField] GameObject bottomPipe;
     [SerializeField] GameObject point;
+    [SerializeField] Vector2 _space = new Vector2(0, 8.5f);
 
     private float spawnX = 4f;
     //private float delayTime = 0;
@@ -14,29 +15,31 @@ public class SpawnManager : MonoBehaviour
     private float maxY = 7f;
     private float minxY = 2.5f;
 
+    public bool _wait { get; set; }
+
     Bird bird;
-    PipeController pipeController;
+    CallSpawn callSpawn;
 
     // Start is called before the first frame update
 
     private void Awake()
     {
+        callSpawn = GameObject.Find("CallSpawn").GetComponent<CallSpawn>();
         StartCoroutine(WaitBird());
-        StartCoroutine(WaitSpawnPipe());
     }
+
 
     void Update()
     {
-        if (pipeController != null)
+        if (callSpawn != null)
         {
-            
-            if (pipeController._callSpawn)
+            if (callSpawn._callSpawn && !_wait)
             {
                 SpawnPipe();
+                _wait = true;
             }
-            Debug.Log("SpawnManager " + pipeController._callSpawn + " " + pipeController.GetInstanceID());
         }
-        
+
     }
 
     void SpawnPipe()
@@ -46,8 +49,8 @@ public class SpawnManager : MonoBehaviour
             float positionY = Random.Range(minxY, maxY);
             Vector2 spawnPos = new Vector2(spawnX, Random.Range(spawnX, positionY));
             Instantiate(topPipe, spawnPos, topPipe.transform.rotation);
-            Instantiate(bottomPipe, spawnPos - new Vector2(0, 7.5f), bottomPipe.transform.rotation);
-            Instantiate(point, spawnPos - new Vector2(0, positionY), point.transform.rotation);
+            Instantiate(bottomPipe, spawnPos - _space, bottomPipe.transform.rotation);
+            Instantiate(point, new Vector2(spawnX,0), point.transform.rotation);
         }
     }
 
@@ -62,7 +65,6 @@ public class SpawnManager : MonoBehaviour
         //}
         //yield return new WaitForSeconds(0.001f);
         bird = GameObject.FindGameObjectWithTag("Bird").GetComponent<Bird>();
-        Debug.Log(bird);
         StartCoroutine(WaitGameStart());
     }
 
@@ -70,12 +72,5 @@ public class SpawnManager : MonoBehaviour
     {
         yield return new WaitUntil(() => bird._isStart);
         SpawnPipe();
-    }
-
-    IEnumerator WaitSpawnPipe()
-    {
-        yield return new WaitUntil(() => GameObject.FindGameObjectWithTag("Pipe"));
-        pipeController = GameObject.FindGameObjectWithTag("Pipe").GetComponent<PipeController>();
-        Debug.Log(pipeController);
     }
 }

@@ -9,11 +9,7 @@ public class Bird : MonoBehaviour
     public int point { get; private set; }
     public bool _isStart { get; private set; }
     public float flyForce = 10f;
-    //public float gravity = -9.8f;
     public bool isDie { get; private set; }
-
-    //private Vector3 direction;
-
 
     // Start is called before the first frame update
     void Awake()
@@ -41,7 +37,6 @@ public class Bird : MonoBehaviour
         if (collision.gameObject.CompareTag("Ground") || collision.gameObject.CompareTag("Obstacle")) 
         {
             isDie = true;
-            point = 0;
         }
     }
 
@@ -60,15 +55,36 @@ public class Bird : MonoBehaviour
             birdRb.AddForce(Vector3.up * flyForce, ForceMode2D.Impulse);
         }
 
-        if (Input.touchCount > 0)
-        {
-            Touch touch = Input.GetTouch(0);
+        //if (Input.touchCount > 0)
+        //{
+        //    Touch touch = Input.GetTouch(0);
 
-            if (touch.phase == TouchPhase.Began)
-            {
-                birdRb.AddForce(Vector3.up * flyForce, ForceMode2D.Impulse);
-            }
+        //    if (touch.phase == TouchPhase.Began)
+        //    {
+        //        birdRb.AddForce(Vector3.up * flyForce, ForceMode2D.Impulse);
+        //    }
+        //}
+    }
+
+    void StartGame()
+    {
+        if (Input.GetKeyDown(KeyCode.Space) || Input.GetMouseButtonDown(0))
+        {
+            birdRb.bodyType = RigidbodyType2D.Dynamic;
+            _isStart = true;
+            isDie = false;
         }
+        //if (Input.touchCount > 0)
+        //{
+        //    Touch touch = Input.GetTouch(0);
+
+        //    if (touch.phase == TouchPhase.Began)
+        //    {
+        //        birdRb.bodyType = RigidbodyType2D.Dynamic;
+        //        _isStart = true;
+        //        isDie = false;
+        //    }
+        //}
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
@@ -77,16 +93,6 @@ public class Bird : MonoBehaviour
         {
             point++;
             Debug.Log("Point " + point);
-        }
-    }
-
-    void StartGame()
-    {
-        if (Input.GetKeyDown(KeyCode.Space))
-        {
-            birdRb.bodyType = RigidbodyType2D.Dynamic;
-            _isStart = true;
-            isDie = false;
         }
     }
 

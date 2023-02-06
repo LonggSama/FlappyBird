@@ -439,6 +439,7 @@ GameObject:
   - component: {fileID: 1151786681}
   - component: {fileID: 1151786680}
   - component: {fileID: 1151786679}
+  - component: {fileID: 1151786682}
   m_Layer: 0
   m_Name: CallSpawn
   m_TagString: CallSpawn
@@ -501,13 +502,25 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1151786678}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 1.5, y: 0, z: 0}
+  m_LocalPosition: {x: 0.5, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1151786682
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1151786678}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b44ba68fce9dd66409fb4fb4ac93e35d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1182399746
 GameObject:
   m_ObjectHideFlags: 0
@@ -585,9 +598,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1df5d459daa0c0749868807ef857891b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  topPipe: {fileID: 3013902551820098691, guid: 3da09bf94cd096a4c8a2e5f9e82c1187, type: 3}
-  bottomPipe: {fileID: 180770911384113055, guid: 4c011dd3828862b4395dc353a1552a22, type: 3}
+  topPipe: {fileID: 6385859095507239786, guid: f50eba0c83258d64db6df05abe5548fb, type: 3}
+  bottomPipe: {fileID: 6538700791444263129, guid: 46d7c7fec645a5c42b97cd50297e37fa, type: 3}
   point: {fileID: 7589625162342945109, guid: 8934e7d97b0394844bba135362e3875a, type: 3}
+  _space: {x: 0, y: 8.5}
 --- !u!4 &2058134070
 Transform:
   m_ObjectHideFlags: 0
