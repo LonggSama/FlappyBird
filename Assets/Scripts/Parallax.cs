@@ -6,14 +6,23 @@ public class Parallax : MonoBehaviour
 {
     MeshRenderer meshRenderer;
 
-    [SerializeField] float animationSpeed = 1f;
+    [SerializeField] float _minAnimationSpeed;
+    [SerializeField] float _boostSpeed;
+
+    public float CurrentAnimationSpeed { get; set; }
 
     Bird bird;
+    MoveLeft moveLeft;
 
     void Awake()
     {
         meshRenderer = GetComponent<MeshRenderer>();
         StartCoroutine(WaitBird());
+    }
+
+    private void Start()
+    {
+        CurrentAnimationSpeed = _minAnimationSpeed;
     }
 
     // Update is called once per frame
@@ -23,14 +32,16 @@ public class Parallax : MonoBehaviour
         {
             MoveLeft();
         }
+
+        ChangeAnimationSpeed();
     }
 
     void MoveLeft()
     {
-        meshRenderer.material.mainTextureOffset += new Vector2(animationSpeed * Time.deltaTime, 0);
+        meshRenderer.material.mainTextureOffset += new Vector2(CurrentAnimationSpeed * Time.deltaTime, 0);
         if (bird.isDie)
         {
-            animationSpeed = 0;
+            CurrentAnimationSpeed = 0;
         }
     }
 
@@ -47,4 +58,9 @@ public class Parallax : MonoBehaviour
         bird = GameObject.FindGameObjectWithTag("Bird").GetComponent<Bird>();
     }
 
+    void ChangeAnimationSpeed()
+    {
+        int wave = bird.point / 5;
+        CurrentAnimationSpeed = _minAnimationSpeed + wave * _boostSpeed;
+    }
 }
