@@ -28,21 +28,21 @@ public class Parallax : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (bird != null)
+        if (bird != null && !bird.isDie)
         {
             MoveLeft();
+            ChangeAnimationSpeed();
+        }
+        if (bird.isDie)
+        {
+            CurrentAnimationSpeed = 0;
         }
 
-        ChangeAnimationSpeed();
     }
 
     void MoveLeft()
     {
         meshRenderer.material.mainTextureOffset += new Vector2(CurrentAnimationSpeed * Time.deltaTime, 0);
-        if (bird.isDie)
-        {
-            CurrentAnimationSpeed = 0;
-        }
     }
 
     IEnumerator WaitBird()
