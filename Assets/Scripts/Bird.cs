@@ -4,12 +4,19 @@ using UnityEngine;
 
 public class Bird : MonoBehaviour
 {
-    private Rigidbody2D birdRb;
+    [SerializeField] AudioClip _dieSound;
+    [SerializeField] AudioClip _hitSound;
+    [SerializeField] AudioClip _pointSound;
+    [SerializeField] AudioClip _wingSound;
 
     public int point { get; private set; }
     public bool _isStart { get; private set; }
-    public float flyForce = 10f;
     public bool isDie { get; private set; }
+
+    private Rigidbody2D birdRb;
+    private bool _playDieSound;
+    
+    public float flyForce = 10f;  
 
     // Start is called before the first frame update
     void Awake()
@@ -25,10 +32,15 @@ public class Bird : MonoBehaviour
             StartGame();
         }
 
-        ActiveAnimator();
         if (!isDie)
         {
             BirdFly();
+        }
+
+        if (isDie && !_playDieSound)
+        {
+            AudioManager.Instance.PlaySound(_dieSound);
+            _playDieSound = true;
         }
     }
 
@@ -36,15 +48,9 @@ public class Bird : MonoBehaviour
     {
         if (collision.gameObject.CompareTag("Ground") || collision.gameObject.CompareTag("Obstacle")) 
         {
-            isDie = true;
-        }
-    }
-
-    void ActiveAnimator()
-    {
-        if (isDie)
-        {
+            AudioManager.Instance.PlaySound(_hitSound);
             gameObject.GetComponent<Animator>().enabled = false;
+            isDie = true;
         }
     }
 
@@ -53,6 +59,7 @@ public class Bird : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.Space) || Input.GetMouseButtonDown(0))
         {
             birdRb.AddForce(Vector3.up * flyForce, ForceMode2D.Impulse);
+            AudioManager.Instance.PlaySound(_wingSound);
         }
 
         //if (Input.touchCount > 0)
@@ -91,9 +98,9 @@ public class Bird : MonoBehaviour
     {
         if (collision.gameObject.CompareTag("Point"))
         {
-            point++;
+            AudioManager.Instance.PlaySound(_pointSound);
+            point++;            
             Debug.Log("Point " + point);
         }
     }
-
 }

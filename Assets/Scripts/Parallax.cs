@@ -12,7 +12,6 @@ public class Parallax : MonoBehaviour
     public float CurrentAnimationSpeed { get; set; }
 
     Bird bird;
-    MoveLeft moveLeft;
 
     void Awake()
     {
@@ -33,7 +32,7 @@ public class Parallax : MonoBehaviour
             MoveLeft();
             ChangeAnimationSpeed();
         }
-        if (bird.isDie)
+        if (bird != null && bird.isDie)
         {
             CurrentAnimationSpeed = 0;
         }

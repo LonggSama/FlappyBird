@@ -90,7 +90,7 @@ SpriteRenderer:
   m_SpriteSortPoint: 0
 --- !u!95 &4712259945360713223
 Animator:
-  serializedVersion: 4
+  serializedVersion: 5
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -107,7 +107,7 @@ Animator:
   m_WarningMessage: 
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
-  m_KeepAnimatorControllerStateOnDisable: 0
+  m_KeepAnimatorStateOnDisable: 0
 --- !u!50 &-7819737348374332494
 Rigidbody2D:
   serializedVersion: 4
@@ -181,5 +181,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 502750e861fda2842a7a9b1fefdadea7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  point: 0
+  _dieSound: {fileID: 8300000, guid: 772b18821463eb0439740844153813fa, type: 3}
+  _hitSound: {fileID: 8300000, guid: c6759030ca6c952499dae26cab4b7234, type: 3}
+  _pointSound: {fileID: 8300000, guid: 57aa1382fe0eed34a8ecfaa5abed4822, type: 3}
+  _wingSound: {fileID: 8300000, guid: 5adfcdd5d2cf1354c8a02799256d7ed3, type: 3}
   flyForce: 5
