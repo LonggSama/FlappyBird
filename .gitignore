@@ -6,3 +6,4 @@ obj
 *.csproj
 Flappy Bird.sln
 .vsconfig
+UserSettings
