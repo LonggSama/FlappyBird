@@ -9,6 +9,8 @@ TagManager:
   - Obstacle
   - Bird
   - Point
+  - CallSpawn
+  - Pipe
   layers:
   - Default
   - TransparentFX
